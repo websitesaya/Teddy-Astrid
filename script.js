@@ -221,41 +221,94 @@ function copyRek(id, btn) {
   });
 }
 
-// ── Wishes ──
-function loadWishes() {
+// ── Konfigurasi JSONBin ──
+const JSONBIN = {
+  binId: '69f4d23510716a4d5de60aab',       // contoh: 6630a1234abc1234567890
+  apiKey: '$2a$10$nou5c3yZntdxwBqnGEEOvuCkZpg9GT4CfSp1IXgNhJpKQzhxI8NYO',      // contoh: $2a$10$xxxxx...
+  url() { return `https://api.jsonbin.io/v3/b/${this.binId}`; }
+};
+
+// ── Load Wishes dari server ──
+async function loadWishes() {
   try {
-    const data = localStorage.getItem(CONFIG.storageKey);
-    if (!data) return;
-    JSON.parse(data).forEach(w => renderWish(w, false));
-  } catch (_) { }
+    const res = await fetch(JSONBIN.url() + '/latest', {
+      headers: { 'X-Master-Key': JSONBIN.apiKey }
+    });
+    const data = await res.json();
+    const wishes = data.record?.wishes || [];
+    document.getElementById('wishesList').innerHTML = '';
+    wishes.forEach(w => renderWish(w, false));
+  } catch (e) {
+    console.warn('Gagal load ucapan:', e);
+  }
 }
 
-function submitWish(e) {
+// ── Submit Wish ke server ──
+async function submitWish(e) {
   e.preventDefault();
-  const name = document.getElementById("wishName").value.trim();
-  const attend = document.getElementById("wishAttend").value;
-  const message = document.getElementById("wishMessage").value.trim();
+  const name = document.getElementById('wishName').value.trim();
+  const attend = document.getElementById('wishAttend').value;
+  const message = document.getElementById('wishMessage').value.trim();
   if (!name) return;
 
   const wish = {
     name, attend, message,
-    time: new Date().toLocaleString("id-ID", { day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit" }),
+    time: new Date().toLocaleString('id-ID', {
+      day: 'numeric', month: 'long', year: 'numeric',
+      hour: '2-digit', minute: '2-digit'
+    })
   };
 
-  // Save
+  const btn = document.querySelector('.wish-btn');
+  btn.textContent = 'Mengirim...';
+  btn.disabled = true;
+
   try {
-    const stored = localStorage.getItem(CONFIG.storageKey);
-    const list = stored ? JSON.parse(stored) : [];
-    list.unshift(wish);
-    localStorage.setItem(CONFIG.storageKey, JSON.stringify(list.slice(0, 60)));
-  } catch (_) { }
+    // Ambil data lama dulu
+    const res = await fetch(JSONBIN.url() + '/latest', {
+      headers: { 'X-Master-Key': JSONBIN.apiKey }
+    });
+    const data = await res.json();
+    const wishes = data.record?.wishes || [];
+    wishes.unshift(wish);
 
-  renderWish(wish, true);
-  confetti();
+    // Simpan data baru
+    await fetch(JSONBIN.url(), {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-Master-Key': JSONBIN.apiKey
+      },
+      body: JSON.stringify({ wishes: wishes.slice(0, 100) })
+    });
 
-  document.getElementById("wishName").value = "";
-  document.getElementById("wishMessage").value = "";
+    renderWish(wish, true);
+    confetti();
+    document.getElementById('wishName').value = '';
+    document.getElementById('wishMessage').value = '';
+    showToast('Ucapan berhasil terkirim! 🎉');
+  } catch (err) {
+    showToast('Gagal mengirim, coba lagi.');
+    console.error(err);
+  } finally {
+    btn.textContent = 'Kirim Ucapan ✦';
+    btn.disabled = false;
+  }
 }
+
+// Save
+try {
+  const stored = localStorage.getItem(CONFIG.storageKey);
+  const list = stored ? JSON.parse(stored) : [];
+  list.unshift(wish);
+  localStorage.setItem(CONFIG.storageKey, JSON.stringify(list.slice(0, 60)));
+} catch (_) { }
+
+renderWish(wish, true);
+confetti();
+
+document.getElementById("wishName").value = "";
+document.getElementById("wishMessage").value = "";
 
 function renderWish(wish, prepend) {
   const list = document.getElementById("wishesList");
