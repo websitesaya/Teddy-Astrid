@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Generator Undangan — Teddy & Astrid,S.Pd</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=DM+Serif+Display:ital@0;1&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --rose:        #C27B7B;
+      --rose-light:  #DCA8A8;
+      --rose-pale:   #F2DADA;
+      --rose-ultra:  #FBF0F0;
+      --sage:        #7A9E87;
+      --sage-light:  #A8C4B0;
+      --sage-pale:   #DFF0E5;
+      --warm-white:  #FDFAF7;
+      --warm-cream:  #F6EFE6;
+      --warm-sand:   #EBE0D0;
+      --warm-brown:  #7A5C4A;
+      --text-h:      #3D2B22;
+      --text-body:   #5A4037;
+      --text-soft:   #8A7060;
+      --shadow-rose: rgba(194,123,123,0.22);
+      --ff-display:  'Playfair Display', serif;
+      --ff-heading:  'DM Serif Display', serif;
+      --ff-body:     'Jost', sans-serif;
+      --t:           all 0.35s cubic-bezier(0.25,0.46,0.45,0.94);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: var(--ff-body);
+      background: linear-gradient(145deg, #F7EBE8 0%, #EDE8E0 50%, #E8F0EC 100%);
+      min-height: 100vh; color: var(--text-body);
+      padding: 2rem 1rem;
+    }
+
+    .gen-wrapper {
+      max-width: 680px; margin: 0 auto;
+    }
+
+    /* Header */
+    .gen-header { text-align: center; margin-bottom: 2.5rem; }
+    .gen-back-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--rose); font-weight: 600;
+      text-decoration: none; margin-bottom: 1.5rem;
+      transition: var(--t);
+    }
+    .gen-back-link:hover { color: #B06A6A; transform: translateX(-3px); }
+
+    .gen-logo { font-family: var(--ff-heading); font-size: 2rem; color: var(--text-h); margin-bottom: 0.25rem; }
+    .gen-tagline { font-family: var(--ff-display); font-style: italic; font-size: 0.95rem; color: var(--text-soft); }
+
+    .gen-divider {
+      display: flex; align-items: center; gap: 0.75rem;
+      max-width: 200px; margin: 1rem auto;
+    }
+    .gen-divider span:not(.gd-dot) { flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--rose-light), transparent); }
+    .gd-dot { color: var(--rose); font-size: 0.6rem; }
+
+    /* Card */
+    .gen-card {
+      background: #fff; border-radius: 16px; padding: 2rem;
+      border: 1px solid rgba(194,123,123,0.15);
+      box-shadow: 0 8px 40px rgba(61,43,34,0.1);
+      margin-bottom: 1.5rem;
+    }
+
+    .card-title {
+      font-family: var(--ff-display); font-size: 1rem; font-weight: 600;
+      color: var(--text-h); margin-bottom: 0.3rem; display: flex; align-items: center; gap: 0.5rem;
+    }
+    .card-desc { font-size: 0.83rem; color: var(--text-soft); margin-bottom: 1.5rem; }
+
+    /* Form */
+    .form-grp { margin-bottom: 1rem; }
+    .form-grp label {
+      display: block; font-size: 0.62rem; letter-spacing: 0.22em;
+      text-transform: uppercase; color: var(--rose); margin-bottom: 0.4rem; font-weight: 600;
+    }
+    .form-grp input,
+    .form-grp textarea {
+      width: 100%; background: var(--warm-white);
+      border: 1.5px solid rgba(194,123,123,0.2); border-radius: 8px;
+      padding: 0.75rem 1rem; font-family: var(--ff-body);
+      font-size: 0.9rem; color: var(--text-h); outline: none;
+      transition: var(--t); resize: none;
+    }
+    .form-grp input:focus,
+    .form-grp textarea:focus {
+      border-color: var(--rose); box-shadow: 0 0 0 3px rgba(194,123,123,0.12);
+    }
+
+    /* Buttons */
+    .btn-primary {
+      width: 100%; background: var(--rose); color: #fff;
+      font-family: var(--ff-body); font-size: 0.8rem; letter-spacing: 0.2em;
+      text-transform: uppercase; font-weight: 600;
+      border: none; padding: 1rem; border-radius: 8px;
+      cursor: pointer; transition: var(--t);
+      box-shadow: 0 4px 16px var(--shadow-rose);
+    }
+    .btn-primary:hover { background: #B06A6A; transform: translateY(-2px); box-shadow: 0 8px 24px var(--shadow-rose); }
+
+    .btn-secondary {
+      width: 100%; background: transparent;
+      border: 1.5px solid var(--sage-light); color: var(--sage);
+      font-family: var(--ff-body); font-size: 0.8rem; letter-spacing: 0.2em;
+      text-transform: uppercase; font-weight: 600;
+      padding: 1rem; border-radius: 8px;
+      cursor: pointer; transition: var(--t); margin-top: 0.5rem;
+    }
+    .btn-secondary:hover { background: var(--sage); color: #fff; border-color: var(--sage); }
+
+    /* Result box */
+    .result-box {
+      background: var(--rose-ultra); border: 1px solid rgba(194,123,123,0.2);
+      border-radius: 10px; padding: 1.25rem; margin-top: 1.25rem; display: none;
+    }
+    .result-label { font-size: 0.62rem; letter-spacing: 0.2em; text-transform: uppercase; color: var(--rose); font-weight: 600; margin-bottom: 0.5rem; display: block; }
+
+    .link-row { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; }
+    .link-row input {
+      flex: 1; background: #fff; border: 1px solid rgba(194,123,123,0.2);
+      border-radius: 6px; padding: 0.6rem 0.85rem; font-size: 0.82rem;
+      color: var(--text-soft); outline: none; min-width: 0;
+    }
+    .copy-btn {
+      background: var(--rose); color: #fff; border: none;
+      padding: 0.6rem 1.1rem; border-radius: 6px; cursor: pointer;
+      font-size: 0.8rem; font-family: var(--ff-body); font-weight: 600;
+      transition: var(--t); white-space: nowrap;
+    }
+    .copy-btn:hover { background: #B06A6A; }
+
+    .preview-card {
+      background: #fff; border-radius: 8px; padding: 1rem 1.25rem;
+      font-family: var(--ff-display); font-style: italic;
+      font-size: 0.9rem; color: var(--text-soft); margin-bottom: 0.75rem;
+      border: 1px solid rgba(194,123,123,0.12);
+      line-height: 1.6;
+    }
+
+    /* Share buttons */
+    .share-row { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .share-wa {
+      flex: 1; background: #25D366; color: #fff; border: none;
+      padding: 0.7rem 1rem; border-radius: 7px; cursor: pointer;
+      font-size: 0.8rem; font-family: var(--ff-body); font-weight: 600;
+      display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+      transition: var(--t); min-width: 130px;
+    }
+    .share-wa:hover { background: #128C7E; }
+    .share-copy {
+      flex: 1; background: var(--warm-cream); border: 1px solid var(--warm-sand);
+      color: var(--text-body); padding: 0.7rem 1rem; border-radius: 7px;
+      cursor: pointer; font-size: 0.8rem; font-family: var(--ff-body); font-weight: 500;
+      transition: var(--t); min-width: 130px;
+    }
+    .share-copy:hover { background: var(--rose); color: #fff; border-color: var(--rose); }
+
+    /* Divider */
+    .section-sep { border: none; border-top: 1px dashed rgba(194,123,123,0.2); margin: 1.5rem 0; }
+
+    /* Bulk */
+    .bulk-results {
+      display: flex; flex-direction: column; gap: 0.4rem;
+      max-height: 280px; overflow-y: auto; margin-top: 1rem;
+    }
+    .bulk-item {
+      display: flex; align-items: center; justify-content: space-between; gap: 0.5rem;
+      background: var(--warm-white); border: 1px solid rgba(194,123,123,0.12);
+      border-radius: 7px; padding: 0.55rem 0.9rem;
+    }
+    .bi-num  { font-size: 0.65rem; color: var(--text-soft); min-width: 20px; font-weight: 600; }
+    .bi-name { font-size: 0.85rem; color: var(--text-body); flex: 1; min-width: 0; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .bi-btn  {
+      background: none; border: 1px solid rgba(194,123,123,0.3); color: var(--rose);
+      padding: 0.22rem 0.65rem; border-radius: 5px; cursor: pointer; font-size: 0.72rem;
+      font-family: var(--ff-body); transition: var(--t); flex-shrink: 0;
+    }
+    .bi-btn:hover { background: var(--rose); color: #fff; }
+    .bi-wa {
+      background: none; border: 1px solid rgba(37,211,102,0.4); color: #25D366;
+      padding: 0.22rem 0.65rem; border-radius: 5px; cursor: pointer; font-size: 0.72rem;
+      font-family: var(--ff-body); transition: var(--t); flex-shrink: 0;
+    }
+    .bi-wa:hover { background: #25D366; color: #fff; }
+
+    /* Export */
+    .export-btn {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--sage); color: #fff; border: none;
+      padding: 0.7rem 1.5rem; border-radius: 7px; cursor: pointer;
+      font-size: 0.78rem; font-family: var(--ff-body); font-weight: 600;
+      letter-spacing: 0.1em; transition: var(--t); margin-top: 0.75rem;
+    }
+    .export-btn:hover { background: #5F8A70; }
+
+    /* Stats */
+    .stats-bar { display: flex; gap: 1rem; margin-top: 1rem; flex-wrap: wrap; }
+    .stat-pill {
+      background: var(--rose-ultra); border: 1px solid rgba(194,123,123,0.2);
+      border-radius: 20px; padding: 0.35rem 0.9rem;
+      font-size: 0.78rem; color: var(--rose); font-weight: 500;
+    }
+
+    /* Toast */
+    #toast {
+      position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%) translateY(15px);
+      background: var(--text-h); color: var(--rose-pale);
+      font-family: var(--ff-body); font-size: 0.8rem; letter-spacing: 0.08em;
+      padding: 0.65rem 1.5rem; border-radius: 30px;
+      border: 1px solid rgba(194,123,123,0.3);
+      z-index: 999; opacity: 0; pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+      box-shadow: 0 6px 24px rgba(61,43,34,0.3);
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 5px; }
+    ::-webkit-scrollbar-track { background: var(--warm-cream); }
+    ::-webkit-scrollbar-thumb { background: var(--rose-light); border-radius: 5px; }
+  </style>
+</head>
+<body>
+
+<div class="gen-wrapper">
+
+  <!-- Header -->
+  <div class="gen-header">
+    <a href="index.html" class="gen-back-link">← Kembali ke Undangan</a>
+    <h1 class="gen-logo">Generator Undangan</h1>
+    <p class="gen-tagline">Teddy &amp; Astrid,S.Pd</p>
+    <div class="gen-divider">
+      <span></span><span class="gd-dot">❦</span><span></span>
+    </div>
+    <p style="font-size:0.82rem;color:var(--text-soft);">Buat link undangan personal untuk setiap tamu dengan mudah</p>
+  </div>
+
+  <!-- Single Generator -->
+  <div class="gen-card">
+    <h2 class="card-title">✦ Generator Per Tamu</h2>
+    <p class="card-desc">Masukkan nama tamu untuk membuat link undangan yang dipersonalisasi.</p>
+
+    <div class="form-grp">
+      <label>Nama Tamu</label>
+      <input type="text" id="singleName" placeholder="Contoh: Budi Santoso" oninput="clearResult()" />
+    </div>
+    <button class="btn-primary" onclick="generateSingle()">✦ Generate Link</button>
+
+    <div class="result-box" id="singleResult">
+      <span class="result-label">Link Undangan Tamu:</span>
+      <div class="link-row">
+        <input type="text" id="singleLink" readonly />
+        <button class="copy-btn" onclick="copyText('singleLink')">Salin</button>
+      </div>
+      <span class="result-label">Preview Undangan:</span>
+      <div class="preview-card" id="singlePreview"></div>
+      <div class="share-row">
+        <button class="share-wa" onclick="shareWA()">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+          Share WhatsApp
+        </button>
+        <button class="share-copy" onclick="copyText('singleLink')">📋 Salin Link</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bulk Generator -->
+  <div class="gen-card">
+    <h2 class="card-title">📋 Bulk Generator</h2>
+    <p class="card-desc">Buat banyak link sekaligus. Masukkan satu nama per baris.</p>
+
+    <div class="form-grp">
+      <label>Daftar Nama Tamu (satu per baris)</label>
+      <textarea id="bulkNames" rows="6" placeholder="Ahmad Fauzi&#10;Siti Nurbaya&#10;Budi Santoso&#10;Dewi Rahayu&#10;Hendro Santoso"></textarea>
+    </div>
+    <button class="btn-primary" onclick="generateBulk()">Generate Semua Link ✦</button>
+    <button class="btn-secondary" onclick="exportCSV()">⬇ Export ke CSV</button>
+
+    <div class="stats-bar" id="bulkStats" style="display:none;">
+      <span class="stat-pill" id="statTotal"></span>
+    </div>
+
+    <div class="bulk-results" id="bulkResults"></div>
+  </div>
+
+  <!-- Info Card -->
+  <div class="gen-card" style="background: linear-gradient(135deg, var(--rose-ultra), var(--sage-pale));">
+    <h2 class="card-title">💡 Cara Penggunaan</h2>
+    <p class="card-desc" style="margin-bottom:0;">
+      <strong>1.</strong> Generate link dengan nama tamu di atas.<br>
+      <strong>2.</strong> Salin link dan kirimkan via WhatsApp atau media sosial.<br>
+      <strong>3.</strong> Saat tamu membuka link, nama mereka akan otomatis muncul di halaman cover undangan.<br>
+      <strong>4.</strong> Gunakan Bulk Generator untuk banyak tamu sekaligus.
+    </p>
+    <hr class="section-sep" />
+    <p style="font-size:0.8rem; color:var(--text-soft);">
+      Contoh link: <code style="background:rgba(194,123,123,0.1); padding:0.15rem 0.5rem; border-radius:4px; font-size:0.78rem;">https://domain.com/index.html?to=Nama+Tamu</code>
+    </p>
+  </div>
+
+</div>
+
+<div id="toast"></div>
+
+<script>
+  // Base URL points to index.html, NOT generator.html
+  function getBase() {
+    const url = new URL(window.location.href);
+    url.pathname = url.pathname.replace("generator.html", "index.html");
+    url.search = "";
+    url.hash = "";
+    return url.toString();
+  }
+
+  function buildLink(name) {
+    return getBase() + "?to=" + encodeURIComponent(name);
+  }
+
+  function generateSingle() {
+    const name = document.getElementById("singleName").value.trim();
+    if (!name) { showToast("⚠ Masukkan nama tamu terlebih dahulu"); return; }
+
+    const url = buildLink(name);
+    document.getElementById("singleLink").value = url;
+    document.getElementById("singlePreview").innerHTML =
+      `Kepada Yth. <strong>${esc(name)}</strong><br><em>— Undangan Pernikahan Teddy & Astrid —</em>`;
+    document.getElementById("singleResult").style.display = "block";
+    document.getElementById("singleResult").scrollIntoView({ behavior: "smooth", block: "nearest" });
+  }
+
+  function clearResult() {
+    document.getElementById("singleResult").style.display = "none";
+  }
+
+  function shareWA() {
+    const name = document.getElementById("singleName").value.trim();
+    const url  = document.getElementById("singleLink").value;
+    if (!url) return;
+
+    const msg = `Assalamu'alaikum Wr. Wb. 🌸\n\nKepada Yth.\n*${name}*\n\nDengan penuh sukacita, kami mengundang Bapak/Ibu/Saudara/i untuk hadir dalam pernikahan kami:\n\n💍 *Teddy & Astrid,S.Pd*\n📅 Sabtu, 14 Juni 2025\n📍 Yogyakarta\n\nUndangan digital:\n${url}\n\nKehadiran Anda adalah kebahagiaan kami 🌸\nWassalamu'alaikum Wr. Wb.`;
+    window.open("https://wa.me/?text=" + encodeURIComponent(msg), "_blank");
+  }
+
+  function generateBulk() {
+    const raw   = document.getElementById("bulkNames").value.trim();
+    const names = raw.split("\n").map(n => n.trim()).filter(Boolean);
+    if (!names.length) { showToast("⚠ Masukkan setidaknya satu nama"); return; }
+
+    const container = document.getElementById("bulkResults");
+    container.innerHTML = "";
+
+    names.forEach((name, i) => {
+      const url = buildLink(name);
+      const item = document.createElement("div");
+      item.className = "bulk-item";
+      item.innerHTML = `
+        <span class="bi-num">${i + 1}.</span>
+        <span class="bi-name" title="${esc(name)}">${esc(name)}</span>
+        <button class="bi-wa"   onclick="shareWABulk('${esc(url)}','${esc(name)}')">WA</button>
+        <button class="bi-btn"  onclick="copyText2('${esc(url)}')">Salin</button>
+      `;
+      container.appendChild(item);
+    });
+
+    const stats = document.getElementById("bulkStats");
+    document.getElementById("statTotal").textContent = `${names.length} link dibuat`;
+    stats.style.display = "flex";
+    showToast(`✦ ${names.length} link berhasil dibuat!`);
+  }
+
+  function shareWABulk(url, name) {
+    const msg = `Assalamu'alaikum Wr. Wb. 🌸\n\nKepada Yth.\n*${name}*\n\nKami mengundang Anda dalam pernikahan kami:\n\n💍 *Teddy & Astrid,S.Pd*\n📅 Sabtu, 14 Juni 2025\n\n${url}\n\nWassalamu'alaikum Wr. Wb. 🌸`;
+    window.open("https://wa.me/?text=" + encodeURIComponent(msg), "_blank");
+  }
+
+  function exportCSV() {
+    const raw   = document.getElementById("bulkNames").value.trim();
+    const names = raw.split("\n").map(n => n.trim()).filter(Boolean);
+    if (!names.length) { showToast("⚠ Masukkan nama terlebih dahulu"); return; }
+
+    const rows = [["No", "Nama Tamu", "Link Undangan"]];
+    names.forEach((name, i) => rows.push([i + 1, name, buildLink(name)]));
+
+    const csv = rows.map(r => r.map(v => `"${v}"`).join(",")).join("\n");
+    const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+    const a    = document.createElement("a");
+    a.href     = URL.createObjectURL(blob);
+    a.download = "undangan-Teddy-Astrid.csv";
+    a.click();
+    showToast("✦ File CSV berhasil diunduh!");
+  }
+
+  function copyText(inputId) {
+    const input = document.getElementById(inputId);
+    if (!input?.value) return;
+    doCopy(input.value);
+  }
+
+  function copyText2(text) { doCopy(text); }
+
+  function doCopy(text) {
+    navigator.clipboard.writeText(text)
+      .then(() => showToast("✓ Link berhasil disalin!"))
+      .catch(() => {
+        const t = document.createElement("textarea");
+        t.value = text;
+        document.body.appendChild(t);
+        t.select();
+        document.execCommand("copy");
+        document.body.removeChild(t);
+        showToast("✓ Link berhasil disalin!");
+      });
+  }
+
+  function showToast(msg) {
+    const t = document.getElementById("toast");
+    t.textContent = msg;
+    t.style.opacity = "1";
+    t.style.transform = "translateX(-50%) translateY(0)";
+    setTimeout(() => {
+      t.style.opacity = "0";
+      t.style.transform = "translateX(-50%) translateY(15px)";
+    }, 2600);
+  }
+
+  function esc(str) {
+    return String(str)
+      .replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;")
+      .replace(/"/g,"&quot;").replace(/'/g,"&#39;");
+  }
+
+  // Enter key on single input
+  document.getElementById("singleName").addEventListener("keydown", e => {
+    if (e.key === "Enter") generateSingle();
+  });
+</script>
+</body>
+</html>

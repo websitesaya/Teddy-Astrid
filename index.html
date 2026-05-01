@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Undangan Pernikahan — Teddy & Astrid</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=DM+Serif+Display:ital@0;1&family=Jost:wght@300;400;500&display=swap"
+    rel="stylesheet" />
+</head>
+
+<body>
+
+  <!-- ========== COVER PAGE ========== -->
+  <section id="cover-page" class="page cover-page">
+    <div class="cover-bg-shapes">
+      <div class="bg-blob b1"></div>
+      <div class="bg-blob b2"></div>
+      <div class="bg-blob b3"></div>
+    </div>
+    <div class="petals-container" id="petals-bg"></div>
+
+    <div class="cover-frame">
+      <div class="cf-corner tl"></div>
+      <div class="cf-corner tr"></div>
+      <div class="cf-corner bl"></div>
+      <div class="cf-corner br"></div>
+      <div class="cf-side-h top"></div>
+      <div class="cf-side-h bottom"></div>
+    </div>
+
+    <div class="cover-content">
+      <div class="cover-eyebrow reveal-up delay-1">
+        <span class="ey-line"></span>
+        <span class="ey-text">The Wedding of</span>
+        <span class="ey-line"></span>
+      </div>
+
+      <p class="bismillah-cover reveal-fade delay-2">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
+
+      <h1 class="cover-names reveal-up delay-3">
+        <span class="cn-name">Teddy</span>
+        <span class="cn-amp">❦</span>
+        <span class="cn-name">Astrid</span>
+      </h1>
+
+      <div class="cover-monogram reveal-fade delay-4">SAPUTRA &nbsp;✦&nbsp; PERMATA</div>
+
+      <div class="cover-date-strip reveal-up delay-4">
+        <span class="cds-num">31</span>
+        <div class="cds-text">
+          <span>Mei</span>
+          <span>2026</span>
+        </div>
+        <span class="cds-sep">|</span>
+        <span class="cds-loc">Yogyakarta</span>
+      </div>
+
+      <div class="guest-cover" id="guestDisplay" style="display:none;">
+        <p class="gc-to">Kepada Yth.</p>
+        <p class="gc-name" id="guestNameCover">—</p>
+      </div>
+
+      <button class="cover-btn reveal-up delay-5" onclick="openInvitation()">
+        Buka Undangan &nbsp;→
+      </button>
+      <p class="cover-hint reveal-fade delay-6">✦ sentuh untuk membuka ✦</p>
+    </div>
+
+    <div class="leaf-deco leaf-l"></div>
+    <div class="leaf-deco leaf-r"></div>
+  </section>
+
+  <!-- ========== INVITATION PAGE ========== -->
+  <section id="invitation-page" class="page invitation-page hidden">
+
+    <audio id="bgMusic" loop>
+      <source src="Westlife - Beautiful in white (Lyrics).mp3" type="audio/mpeg" />
+    </audio>
+
+    <!-- Floating Action Buttons -->
+    <div class="fab-group">
+      <button class="fab music-fab" id="musicBtn" onclick="toggleMusic()" title="Musik">
+        <span id="musicIcon">♪</span>
+      </button>
+    </div>
+
+    <div class="petals-container" id="petals-inv"></div>
+
+    <!-- Side Nav Dots -->
+    <nav class="section-nav">
+      <button onclick="scrollToSection('hero')" class="nd active" title="Beranda"></button>
+      <button onclick="scrollToSection('couple')" class="nd" title="Mempelai"></button>
+      <button onclick="scrollToSection('event')" class="nd" title="Acara"></button>
+      <button onclick="scrollToSection('gallery')" class="nd" title="Galeri"></button>
+      <button onclick="scrollToSection('wishes')" class="nd" title="Ucapan"></button>
+    </nav>
+
+    <!-- ─── HERO ─── -->
+    <div class="inv-section s-hero" id="hero">
+      <div class="petals-container" id="petals-hero"></div>
+      <div class="inv-corner-frame">
+        <div class="cf-corner tl sm"></div>
+        <div class="cf-corner tr sm"></div>
+        <div class="cf-corner bl sm"></div>
+        <div class="cf-corner br sm"></div>
+      </div>
+      <div class="section-content text-center">
+        <p class="bismillah-inv">بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم</p>
+        <p class="inv-greeting">Assalamu'alaikum Warahmatullahi Wabarakatuh</p>
+        <div class="slim-div"><span></span><span class="sd-gem">✦</span><span></span></div>
+        <p class="inv-intro">Dengan memohon rahmat dan ridho Allah SWT, kami mengundang</p>
+        <div class="guest-card" id="guestCard">
+          <p class="guest-prefix">Bapak / Ibu / Saudara/i</p>
+          <p class="guest-name" id="guestNameInv">Seluruh Tamu Undangan</p>
+        </div>
+        <p class="inv-intro">untuk hadir memberikan doa restu pada pernikahan kami</p>
+        <h2 class="inv-couple">
+          <span>Teddy</span>
+          <span class="ic-sep">❦</span>
+          <span>Astrid, S.Pd</span>
+        </h2>
+      </div>
+    </div>
+
+    <!-- ─── COUPLE ─── -->
+    <div class="inv-section s-alt" id="couple">
+      <div class="section-content">
+        <div class="sec-hdr scroll-reveal">
+          <span class="sh-ln"></span>
+          <h3 class="sh-ttl">Mempelai</h3><span class="sh-ln"></span>
+        </div>
+        <div class="couple-wrap">
+          <div class="cp-card scroll-reveal">
+            <div class="cp-frame">
+              <img src="mempelai pria.jpg" alt="Foto Mempelai Pria - Teddy" class="cp-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="cp-fallback groom-fb"><span>RS</span></div>
+              <div class="cp-ring"></div>
+              <div class="cp-badge">Mempelai Pria</div>
+            </div>
+            <div class="cp-info">
+              <h4 class="cp-fullname">Teddy</h4>
+              <p class="cp-sub">Putra pertama dari</p>
+              <p class="cp-parents">Bapak Idamaris &amp; Ibu Abdrahim</p>
+            </div>
+          </div>
+
+          <div class="cp-center scroll-reveal">
+            <div class="cpc-inner">
+              <span class="cpc-icon">💍</span>
+              <p class="cpc-txt">bersatu dalam<br>ikatan suci</p>
+            </div>
+          </div>
+
+          <div class="cp-card scroll-reveal delay-1">
+            <div class="cp-frame">
+              <img src="mempelai wanita.jpg" alt="Foto Mempelai Wanita - Astrid, S.Pd" class="cp-img"
+                onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+              <div class="cp-fallback bride-fb"><span>NP</span></div>
+              <div class="cp-ring"></div>
+              <div class="cp-badge bride-badge">Mempelai Wanita</div>
+            </div>
+            <div class="cp-info">
+              <h4 class="cp-fullname">Astrid, S.Pd</h4>
+              <p class="cp-sub">Putri pertama dari</p>
+              <p class="cp-parents">Bapak Zainuddin &amp; Ibu Sumiati</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── EVENT ─── -->
+    <div class="inv-section s-alt" id="event">
+      <div class="section-content">
+        <div class="sec-hdr scroll-reveal">
+          <span class="sh-ln"></span>
+          <h3 class="sh-ttl">Rangkaian Acara</h3><span class="sh-ln"></span>
+        </div>
+
+        <div class="event-grid">
+          <div class="ev-card scroll-reveal">
+            <div class="ev-top">
+              <span class="ev-badge akad">Akad Nikah</span>
+              <span class="ev-icon">🏠</span>
+            </div>
+            <ul class="ev-details">
+              <li><span class="evd-ico">📅</span> Minggu, 31 Mei 2026</li>
+              <li><span class="evd-ico">⏰</span> 08.00 – 10.00 WITA</li>
+              <li><span class="evd-ico">📍</span> Rumah Linrungloe, Desa bangkalaloe,kec.bontoramba,kab.Jeneponto</li>
+            </ul>
+            <div class="countdown" data-target="2026-06-14T08:00:00">
+              <p class="cd-lbl-top">Hitung Mundur</p>
+              <div class="cd-row">
+                <div class="cd-unit"><span class="cd-n" data-unit="d">00</span><span class="cd-l">Hari</span></div>
+                <span class="cd-col">:</span>
+                <div class="cd-unit"><span class="cd-n" data-unit="h">00</span><span class="cd-l">Jam</span></div>
+                <span class="cd-col">:</span>
+                <div class="cd-unit"><span class="cd-n" data-unit="m">00</span><span class="cd-l">Menit</span></div>
+                <span class="cd-col">:</span>
+                <div class="cd-unit"><span class="cd-n" data-unit="s">00</span><span class="cd-l">Detik</span></div>
+              </div>
+          </div>
+
+          <div class="ev-card scroll-reveal delay-1">
+            <div class="ev-top">
+              <span class="ev-badge resepsi">Resepsi</span>
+              <span class="ev-icon">🎊</span>
+            </div>
+            <ul class="ev-details">
+              <li><span class="evd-ico">📅</span> Minggu, 31 Mei 2026</li>
+              <li><span class="evd-ico">⏰</span> 08.00-10.00 WITA</li>
+              <li><span class="evd-ico">📍</span> Rumah. Linrungloe,desa bangkalaloe,Kec. Bontoramba,Kab. Jeneponto</li>
+            </ul>
+            <div class="countdown" data-target="2026-06-14T11:00:00">
+              <p class="cd-lbl-top">Hitung Mundur</p>
+              <div class="cd-row">
+                <div class="cd-unit"><span class="cd-n" data-unit="d">00</span><span class="cd-l">Hari</span></div>
+                <span class="cd-col">:</span>
+                <div class="cd-unit"><span class="cd-n" data-unit="h">00</span><span class="cd-l">Jam</span></div>
+                <span class="cd-col">:</span>
+                <div class="cd-unit"><span class="cd-n" data-unit="m">00</span><span class="cd-l">Menit</span></div>
+                <span class="cd-col">:</span>
+                <div class="cd-unit"><span class="cd-n" data-unit="s">00</span><span class="cd-l">Detik</span></div>
+              </div>
+          </div>
+        </div>
+
+        <blockquote class="ayat-box scroll-reveal">
+          <p class="ayat-txt">"Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu
+            dari jenismu sendiri, agar kamu merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan
+            sayang."</p>
+          <footer class="ayat-src">— QS. Ar-Rum : 21</footer>
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- ─── GALLERY ─── -->
+    <div class="inv-section s-gallery" id="gallery">
+      <div class="section-content">
+        <div class="sec-hdr scroll-reveal">
+          <span class="sh-ln"></span>
+          <h3 class="sh-ttl">Galeri Foto</h3><span class="sh-ln"></span>
+        </div>
+        <p class="gal-sub scroll-reveal">Momen berharga yang kami abadikan bersama</p>
+        <div class="gal-grid">
+          <div class="gi tall scroll-reveal">
+            <img src="Foto1.jpg" alt="Foto Prewedding 1 - Teddy & Astrid" loading="lazy"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="gi-ph"><span>📸</span></div>
+            <div class="gi-ov">Teddy &amp; Astrid</div>
+          </div>
+          <div class="gi scroll-reveal delay-1">
+            <img src="Foto2.jpg" alt="Foto Prewedding 2 - Teddy & Astrid" loading="lazy"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="gi-ph"><span>📸</span></div>
+            <div class="gi-ov">Teddy &amp; Astrid</div>
+          </div>
+          <div class="gi scroll-reveal delay-1">
+            <img src="Foto3.jpg" alt="Foto Prewedding 3 - Teddy & Astrid" loading="lazy"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="gi-ph"><span>📸</span></div>
+            <div class="gi-ov">Teddy &amp; Astrid</div>
+          </div>
+          <div class="gi scroll-reveal delay-2">
+            <img src="Foto4.jpg" alt="Foto Prewedding 4 - Teddy & Astrid" loading="lazy"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="gi-ph"><span>📸</span></div>
+            <div class="gi-ov">Teddy &amp; Astrid</div>
+          </div>
+          <div class="gi wide scroll-reveal delay-2">
+            <img src="Foto5.jpg" alt="Foto Prewedding 5 - Teddy & Astrid" loading="lazy"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="gi-ph"><span>📸</span></div>
+            <div class="gi-ov">Teddy &amp; Astrid</div>
+          </div>
+          <div class="gi scroll-reveal delay-3">
+            <img src="Foto6.jpg" alt="Foto Prewedding 6 - Teddy & Astrid" loading="lazy"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="gi-ph"><span>📸</span></div>
+            <div class="gi-ov">Teddy &amp; Astrid</div>
+          </div>
+          <div class="gi wide scroll-reveal delay-2">
+            <img src="Foto7.jpg" alt="Foto Prewedding 5 - Teddy & Astrid" loading="lazy"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="gi-ph"><span>📸</span></div>
+            <div class="gi-ov">Teddy &amp; Astrid</div>
+          </div>
+          <div class="gi wide scroll-reveal delay-2">
+            <img src="Foto8.jpg" alt="Foto Prewedding 5 - Teddy & Astrid" loading="lazy"
+              onerror="this.style.display='none';this.nextElementSibling.style.display='flex';" />
+            <div class="gi-ph"><span>📸</span></div>
+            <div class="gi-ov">Teddy &amp; Astrid</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── HADIAH ─── -->
+    <div class="inv-section s-hadiah" id="hadiah">
+      <div class="section-content">
+        <div class="sec-hdr scroll-reveal">
+          <span class="sh-ln"></span>
+          <h3 class="sh-ttl">Hadiah Pernikahan</h3>
+          <span class="sh-ln"></span>
+        </div>
+        <p class="hadiah-sub scroll-reveal">— Amplop Digital —</p>
+
+        <div class="hadiah-intro scroll-reveal">
+          <span class="hi-icon">🎁</span>
+          <p class="hi-text">Doa dan kehadiran Anda adalah hadiah terbaik bagi kami.<br>
+            Namun jika Anda ingin memberikan hadiah, silakan transfer melalui rekening berikut.</p>
+        </div>
+
+        <div class="rekening-grid">
+
+          <!-- Mempelai Pria -->
+          <div class="rek-card scroll-reveal">
+            <div class="rek-header groom-hdr">
+              <div class="rek-avatar g">RS</div>
+              <div class="rek-identity">
+                <p class="rek-role g">Mempelai Pria</p>
+                <p class="rek-name">Teddy</p>
+              </div>
+            </div>
+            <div class="rek-body">
+              <div class="rek-bank-row">
+                <div class="rek-bank-logo rek-bca">BCA</div>
+                <span class="rek-bank-name">Bank BCA</span>
+              </div>
+              <p class="rek-norek-lbl">Nomor Rekening</p>
+              <p class="rek-norek" id="norek-groom">7325 5665 15</p>
+              <p class="rek-atas-nama">a.n. Teddy</p>
+              <button class="rek-copy-btn g" onclick="copyRek('norek-groom', this)">Salin Nomor Rekening</button>
+            </div>
+          </div>
+
+          <!-- Mempelai Wanita -->
+          <div class="rek-card scroll-reveal delay-1">
+            <div class="rek-header bride-hdr">
+              <div class="rek-avatar b">NP</div>
+              <div class="rek-identity">
+                <p class="rek-role b">Mempelai Wanita</p>
+                <p class="rek-name">Astrid, S.Pd</p>
+              </div>
+            </div>
+            <div class="rek-body">
+              <div class="rek-bank-row">
+                <div class="rek-bank-logo rek-bri">BRI</div>
+                <span class="rek-bank-name">Bank BRI</span>
+              </div>
+              <p class="rek-norek-lbl">Nomor Rekening</p>
+              <p class="rek-norek" id="norek-bride">8104 0103 8367 537</p>
+              <p class="rek-atas-nama">a.n. Astrid</p>
+              <button class="rek-copy-btn b" onclick="copyRek('norek-bride', this)">Salin Nomor Rekening</button>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="hadiah-note scroll-reveal">
+          <p>Mohon tuliskan nama Anda sebagai keterangan transfer.</p>
+          <p>Jazakumullahu khairan atas kebaikan dan doa yang tulus. 🤍</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ─── WISHES ─── -->
+    <div class="inv-section s-wishes" id="wishes">
+      <div class="section-content">
+        <div class="sec-hdr scroll-reveal">
+          <span class="sh-ln"></span>
+          <h3 class="sh-ttl">Ucapan &amp; Doa</h3><span class="sh-ln"></span>
+        </div>
+        <p class="wish-sub scroll-reveal">Doa dan ucapan tulus dari Anda sangat berarti bagi kami</p>
+
+        <form class="wish-form scroll-reveal" onsubmit="submitWish(event)">
+          <div class="form-row-2">
+            <div class="form-grp">
+              <label>Nama</label>
+              <input type="text" id="wishName" placeholder="Nama Anda..." required />
+            </div>
+            <div class="form-grp">
+              <label>Kehadiran</label>
+              <select id="wishAttend">
+                <option value="hadir">✅ Insya Allah Hadir</option>
+                <option value="tidak">❌ Tidak Dapat Hadir</option>
+                <option value="ragu">🤔 Masih Ragu</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-grp">
+            <label>Ucapan &amp; Doa</label>
+            <textarea id="wishMessage" rows="3" placeholder="Tulis doa dan ucapan tulus untuk mempelai..."></textarea>
+          </div>
+          <button type="submit" class="wish-btn">Kirim Ucapan ✦</button>
+        </form>
+
+        <div class="wish-list" id="wishesList"></div>
+      </div>
+    </div>
+
+    <!-- ─── FOOTER ─── -->
+    <footer class="inv-footer">
+      <div class="ft-floral">✿ ❦ ✿</div>
+      <h3 class="ft-names">Teddy &amp; Astrid</h3>
+      <p class="ft-msg">Merupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir
+        untuk memberikan doa restu.</p>
+      <p class="ft-closing">Wassalamu'alaikum Warahmatullahi Wabarakatuh</p>
+      <div class="ft-floral">✿ ❦ ✿</div>
+      <p class="ft-date">Minggu, 31 Mei 2026</p>
+
+      <!-- ─── Credit Designer ─── -->
+      <div class="ft-designer">
+        <p class="ft-design-by">Design by <span>Zhald_Design</span></p>
+        <div class="ft-socials">
+          <a href="https://instagram.com/rijald_elimanafe" target="_blank" class="ft-social-btn ig">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" />
+            </svg>
+            @rijald_elimanafe
+          </a>
+          <a href="https://wa.me/628218912203" target="_blank" class="ft-social-btn wa">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
+            </svg>
+            0821 8912 203
+          </a>
+        </div>
+      </div>
+    </footer>
+
+  </section>
+
+  <div class="page-transition" id="pageTransition"></div>
+  <script src="script.js"></script>
+</body>
+
+</html>
